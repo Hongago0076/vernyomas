@@ -1,0 +1,31 @@
+.navbar {
+  background-color: #2c3e50;
+  padding: 10px;
+  position: relative; /* biztosítja, hogy a z-index működjön */
+  z-index: 1000; /* magas z-index, hogy a navbar a legfelső rétegben legyen */
+}
+
+.navbar ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar li {
+  display: inline;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+  cursor: pointer; /* biztosítja, hogy a linkek kattinthatók legyenek */
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.navbar a.active {
+  font-weight: bold;
+}
