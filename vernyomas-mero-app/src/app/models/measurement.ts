@@ -1,4 +1,4 @@
-export interface BloodPressureMeasurement {
+export interface Measurement {
   id?: string;
   patientId: string;
   systolic: number;
