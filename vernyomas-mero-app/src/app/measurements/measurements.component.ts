@@ -2,11 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {MeasurementFormComponent} from './measurement-form/measurement-form.component';
 import {Measurement} from '../models/measurement';
 import {MeasurementListComponent} from './measurement-list/measurement-list.component';
+import {MatCard, MatCardContent, MatCardTitle} from '@angular/material/card';
 
 
 @Component({
   selector: 'app-measurements',
-  imports: [MeasurementFormComponent, MeasurementListComponent],
+  imports: [MeasurementFormComponent, MeasurementListComponent, MatCard, MatCardTitle, MatCardContent],
   templateUrl: './measurements.component.html',
   styleUrl: './measurements.component.css'
 })

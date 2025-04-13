@@ -2,30 +2,34 @@
   <h2>Írja be a vérnyomás eredményét!</h2>
 
   <form [formGroup]="measurementForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="systolic">Szisztolés vérnyomás:</label>
-      <input id="systolic" type="number" class="form-control" formControlName="systolic" placeholder="Pl. 120" />
-    </div>
 
-    <div class="form-group">
-      <label for="diastolic">Diasztolés vérnyomás:</label>
-      <input id="diastolic" type="number" class="form-control" formControlName="diastolic" placeholder="Pl. 80" />
-    </div>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Szisztolés vérnyomás</mat-label>
+      <input matInput type="number" formControlName="systolic" placeholder="Pl. 120" />
+    </mat-form-field>
 
-    <div class="form-group">
-      <label for="pulse">Pulzus:</label>
-      <input id="pulse" type="number" class="form-control" formControlName="pulse" placeholder="Pl. 70" />
-    </div>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Diasztolés vérnyomás</mat-label>
+      <input matInput type="number" formControlName="diastolic" placeholder="Pl. 80" />
+    </mat-form-field>
 
-    <div class="form-group">
-      <label for="date">Mérés dátuma:</label>
-      <input id="date" type="datetime-local" class="form-control" formControlName="date" />
-    </div>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Pulzus</mat-label>
+      <input matInput type="number" formControlName="pulse" placeholder="Pl. 70" />
+    </mat-form-field>
 
-    <button type="submit" class="btn btn-primary" [disabled]="measurementForm.invalid">Mentés</button>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Mérés dátuma</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Válasszon dátumot" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="measurementForm.invalid">
+      Mentés
+    </button>
   </form>
 </div>
-
 
 <hr>
 

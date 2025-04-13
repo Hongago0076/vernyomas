@@ -1,0 +1,53 @@
+/* Az egész konténer középre helyezése */
+mat-table {
+  width: 80%; /* Az asztali nézethez 80%-ra szűkíti a táblázat szélességét */
+  margin: 20px auto; /* Középre igazítja, és hozzáad egy kis margót */
+  border-radius: 8px; /* Lekerekített sarkok */
+  overflow: hidden; /* Elrejti a túlnyúló részeket */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Finom árnyék */
+  background-color: #fff; /* Fehér háttérszín */
+}
+
+mat-header-cell, mat-cell {
+  padding: 16px; /* Belső térközök növelése */
+  text-align: center; /* Középre igazított szöveg */
+}
+
+mat-header-row {
+  background-color: #f5f5f5; /* Világos szürke háttér az oszlopfejlécekhez */
+}
+
+mat-header-cell {
+  font-weight: 600; /* Félig vastag betűk */
+  color: #4a4a4a; /* Sötétszürke szín */
+}
+
+mat-row:nth-child(odd) {
+  background-color: #fafafa; /* Változó háttér a sorok között (páros és páratlan sorok) */
+}
+
+mat-row:hover {
+  background-color: #f0f0f0; /* Egérrel történő áthúzáskor egy világosabb háttér */
+  cursor: pointer; /* Mutatja, hogy kattintható */
+}
+
+mat-row {
+  transition: background-color 0.3s ease-in-out; /* Finom áttűnési animáció */
+}
+
+mat-cell {
+  font-size: 14px; /* Kisebb betűméret */
+  color: #333; /* Sötét szöveg a jobb olvashatóság érdekében */
+}
+
+/* Mobil nézetre is optimalizálva */
+@media (max-width: 768px) {
+  mat-table {
+    width: 100%; /* Mobilon teljes szélesség */
+  }
+
+  mat-header-cell, mat-cell {
+    padding: 12px; /* Kevesebb padding mobilra */
+    font-size: 12px; /* Kisebb betűméret mobilon */
+  }
+}

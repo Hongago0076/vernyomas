@@ -1,1 +1,20 @@
-<p>doctor works!</p>
+<h2 class="profile-title">Doktor Profil</h2>
+
+<table class="profile-table">
+  <tr>
+    <th>Név</th>
+    <td>{{ doctor.name }}</td>
+  </tr>
+  <tr>
+    <th>Email</th>
+    <td>{{ doctor.email }}</td>
+  </tr>
+  <tr *ngIf="doctor.specialization">
+    <th>Specializáció</th>
+    <td>{{ doctor.specialization }}</td>
+  </tr>
+  <tr *ngIf="doctor.id">
+    <th>Orvos ID</th>
+    <td>{{ doctor.id }}</td>
+  </tr>
+</table>

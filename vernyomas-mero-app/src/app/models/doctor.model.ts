@@ -1,6 +1,8 @@
-export interface Doctor {
-  id?: string;
-  name: string;
-  email: string;
-  specialization?: string;
+export class Doctor {
+  constructor(
+    public name: string,
+    public email: string,
+    public specialization?: string,
+    public id?: string,
+  ) {}
 }

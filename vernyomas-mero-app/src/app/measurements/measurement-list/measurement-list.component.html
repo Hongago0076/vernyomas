@@ -1,19 +1,36 @@
 <h3>Mérések listája</h3>
-<ul *ngIf="measurements && measurements.length > 0; else noData">
-  <li *ngFor="let m of measurements">
-    📅 {{ m.date }} – 💓 {{ m.systolic }}/{{ m.diastolic }} Hgmm – ❤️ {{ m.pulse }} bpm
-  </li>
-</ul>
+
+<mat-table *ngIf="measurements && measurements.length > 0; else noData" [dataSource]="measurements" >
+
+  <!-- Dátum oszlop -->
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef> Dátum </mat-header-cell>
+    <mat-cell *matCellDef="let measurement">{{ measurement.date | date: 'yyyy-MM-dd' }}</mat-cell>
+  </ng-container>
+
+  <!-- Szisztolés vérnyomás oszlop -->
+  <ng-container matColumnDef="systolic">
+    <mat-header-cell *matHeaderCellDef> Szisztolés </mat-header-cell>
+    <mat-cell *matCellDef="let measurement" >{{ measurement.systolic }}</mat-cell>
+  </ng-container>
+
+  <!-- Diasztolés vérnyomás oszlop -->
+  <ng-container matColumnDef="diastolic">
+    <mat-header-cell *matHeaderCellDef> Diasztolés </mat-header-cell>
+    <mat-cell *matCellDef="let measurement">{{ measurement.diastolic }}</mat-cell>
+  </ng-container>
+
+  <!-- Pulzus oszlop -->
+  <ng-container matColumnDef="pulse">
+    <mat-header-cell *matHeaderCellDef> Pulzus </mat-header-cell>
+    <mat-cell *matCellDef="let measurement">{{ measurement.pulse }}</mat-cell>
+  </ng-container>
+
+  <!-- Táblázat sorok -->
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
 
 <ng-template #noData>
-  <p>Nincs még mentett vérnyomásmérés.</p>
-</ng-template><h3>Mérések listája</h3>
-<ul *ngIf="measurements && measurements.length > 0; else noData">
-  <li *ngFor="let m of measurements">
-    📅 {{ m.date }} – 💓 {{ m.systolic }}/{{ m.diastolic }} Hgmm – ❤️ {{ m.pulse }} bpm
-  </li>
-</ul>
-
-<ng-template #noData>
-  <p>Nincs még mentett vérnyomásmérés.</p>
+  <p>Nincs elérhető mérés.</p>
 </ng-template>

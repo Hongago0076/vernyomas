@@ -1,9 +1,3 @@
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
 .form-group {
   margin-bottom: 15px;
 }
@@ -15,4 +9,15 @@
 
 button:disabled {
   background-color: #ccc;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
 }

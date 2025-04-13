@@ -4,12 +4,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {Measurement} from '../../models/measurement';
 import {MeasurementsComponent} from '../measurements.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatTimepickerModule} from '@angular/material/timepicker';
+
 
 
 @Component({
   selector: 'app-measurement-form',
-  imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './measurement-form.component.html',
+  imports: [ReactiveFormsModule, CommonModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatTimepickerModule],
+    templateUrl: './measurement-form.component.html',
   styleUrl: './measurement-form.component.css'
 })
 export class MeasurementFormComponent {
