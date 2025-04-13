@@ -1,0 +1,42 @@
+<div class="appointment-form-container">
+  <h2>Új Időpont Létrehozása</h2>
+
+  <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+    <!-- Patient ID -->
+    <mat-form-field appearance="fill">
+      <mat-label>Beteg ID</mat-label>
+      <input matInput formControlName="patientId" placeholder="Pl. 12345" />
+    </mat-form-field>
+
+    <!-- Doctor ID -->
+    <mat-form-field appearance="fill">
+      <mat-label>Orvos ID</mat-label>
+      <input matInput formControlName="doctorId" placeholder="Pl. 67890" />
+    </mat-form-field>
+
+    <!-- Date Picker -->
+    <mat-form-field appearance="fill">
+      <mat-label>Mérés dátuma</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date" placeholder="YYYY-MM-DD" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <!-- Place -->
+    <mat-form-field appearance="fill">
+      <mat-label>Helyszín</mat-label>
+      <input matInput formControlName="place" placeholder="Pl. Kórház" />
+    </mat-form-field>
+
+    <!-- Purpose -->
+    <mat-form-field appearance="fill">
+      <mat-label>Cél</mat-label>
+      <input matInput formControlName="purpose" placeholder="Pl. Rutin vizsgálat" />
+    </mat-form-field>
+
+    <!-- Submit Button -->
+    <button mat-raised-button color="primary" type="submit" [disabled]="appointmentForm.invalid">
+      Mentés
+    </button>
+  </form>
+</div>

@@ -1,0 +1,42 @@
+<h3>Időpontok listája</h3>
+
+<mat-table *ngIf="appointments && appointments.length > 0; else noData" [dataSource]="appointments">
+
+  <!-- Dátum oszlop -->
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef> Dátum </mat-header-cell>
+    <mat-cell *matCellDef="let appointment">{{ appointment.date | date:'yyyy-MM-dd HH:mm' }}</mat-cell>
+  </ng-container>
+
+  <!-- Helyszín oszlop -->
+  <ng-container matColumnDef="place">
+    <mat-header-cell *matHeaderCellDef> Helyszín </mat-header-cell>
+    <mat-cell *matCellDef="let appointment">{{ appointment.place }}</mat-cell>
+  </ng-container>
+
+  <!-- Cél oszlop -->
+  <ng-container matColumnDef="purpose">
+    <mat-header-cell *matHeaderCellDef> Cél </mat-header-cell>
+    <mat-cell *matCellDef="let appointment">{{ appointment.purpose || 'Nincs megadva' }}</mat-cell>
+  </ng-container>
+
+  <!-- Beteg ID oszlop -->
+  <ng-container matColumnDef="patientId">
+    <mat-header-cell *matHeaderCellDef> Beteg ID </mat-header-cell>
+    <mat-cell *matCellDef="let appointment">{{ appointment.patientId }}</mat-cell>
+  </ng-container>
+
+  <!-- Orvos ID oszlop -->
+  <ng-container matColumnDef="doctorId">
+    <mat-header-cell *matHeaderCellDef> Orvos ID </mat-header-cell>
+    <mat-cell *matCellDef="let appointment">{{ appointment.doctorId }}</mat-cell>
+  </ng-container>
+
+  <!-- Táblázat sorok -->
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<ng-template #noData>
+  <p>Nincs elérhető időpont.</p>
+</ng-template>
