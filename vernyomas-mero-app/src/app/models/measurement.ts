@@ -1,9 +1,11 @@
-export interface Measurement {
-  id?: string;
-  patientId: string;
-  systolic: number;
-  diastolic: number;
-  pulse: number;
-  date: string; // pl. "2025-04-12T09:30:00"
-  notes?: string;
+export class Measurement {
+  constructor(
+    public patientId: number,
+    public systolic: number,
+    public diastolic: number,
+    public pulse: number,
+    public date: string,
+    public notes?: string,
+    public id?: string,
+  ) {}
 }

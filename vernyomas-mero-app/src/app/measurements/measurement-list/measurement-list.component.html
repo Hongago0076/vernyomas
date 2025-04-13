@@ -1,0 +1,19 @@
+<h3>Mérések listája</h3>
+<ul *ngIf="measurements && measurements.length > 0; else noData">
+  <li *ngFor="let m of measurements">
+    📅 {{ m.date }} – 💓 {{ m.systolic }}/{{ m.diastolic }} Hgmm – ❤️ {{ m.pulse }} bpm
+  </li>
+</ul>
+
+<ng-template #noData>
+  <p>Nincs még mentett vérnyomásmérés.</p>
+</ng-template><h3>Mérések listája</h3>
+<ul *ngIf="measurements && measurements.length > 0; else noData">
+  <li *ngFor="let m of measurements">
+    📅 {{ m.date }} – 💓 {{ m.systolic }}/{{ m.diastolic }} Hgmm – ❤️ {{ m.pulse }} bpm
+  </li>
+</ul>
+
+<ng-template #noData>
+  <p>Nincs még mentett vérnyomásmérés.</p>
+</ng-template>
