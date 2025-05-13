@@ -1,53 +1,99 @@
-/* Az egész konténer középre helyezése */
-mat-table {
-  width: 80%; /* Az asztali nézethez 80%-ra szűkíti a táblázat szélességét */
-  margin: 20px auto; /* Középre igazítja, és hozzáad egy kis margót */
-  border-radius: 8px; /* Lekerekített sarkok */
-  overflow: hidden; /* Elrejti a túlnyúló részeket */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Finom árnyék */
-  background-color: #fff; /* Fehér háttérszín */
+.table-card {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: #fafafa;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 2px solid #3f51b5;
 }
 
-mat-header-cell, mat-cell {
-  padding: 16px; /* Belső térközök növelése */
-  text-align: center; /* Középre igazított szöveg */
+mat-card-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #3f51b5;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 mat-header-row {
-  background-color: #f5f5f5; /* Világos szürke háttér az oszlopfejlécekhez */
+  border-bottom: 3px double #3f51b5;
 }
 
 mat-header-cell {
-  font-weight: 600; /* Félig vastag betűk */
-  color: #4a4a4a; /* Sötétszürke szín */
+  background-color: #e3f2fd;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  border-right: 1px dashed #90caf9;
+  padding: 12px 8px;
+  color: #1a237e;
 }
 
-mat-row:nth-child(odd) {
-  background-color: #fafafa; /* Változó háttér a sorok között (páros és páratlan sorok) */
-}
-
-mat-row:hover {
-  background-color: #f0f0f0; /* Egérrel történő áthúzáskor egy világosabb háttér */
-  cursor: pointer; /* Mutatja, hogy kattintható */
+mat-header-cell:last-child {
+  border-right: none;
 }
 
 mat-row {
-  transition: background-color 0.3s ease-in-out; /* Finom áttűnési animáció */
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s ease;
+}
+
+mat-row:hover {
+  background-color: #f0f0f0;
 }
 
 mat-cell {
-  font-size: 14px; /* Kisebb betűméret */
-  color: #333; /* Sötét szöveg a jobb olvashatóság érdekében */
+  font-size: 14px;
+  text-align: center;
+  padding: 12px 8px;
+  border-right: 1px dotted #bbb;
+  border-left: 1px dotted #bbb;
 }
 
-/* Mobil nézetre is optimalizálva */
-@media (max-width: 768px) {
-  mat-table {
-    width: 100%; /* Mobilon teljes szélesség */
-  }
+mat-cell:first-child {
+  border-left: 2px solid #3f51b5;
+}
 
-  mat-header-cell, mat-cell {
-    padding: 12px; /* Kevesebb padding mobilra */
-    font-size: 12px; /* Kisebb betűméret mobilon */
-  }
+mat-cell:last-child {
+  border-right: 2px solid #3f51b5;
+}
+
+/* Színkódolt cellák */
+.good {
+  background-color: #c8e6c9;
+  color: #000;
+  border: 1px solid #81c784;
+}
+
+.warning {
+  background-color: #fff9c4;
+  color: #000;
+  border: 1px solid #fbc02d;
+}
+
+.danger {
+  background-color: #ffcdd2;
+  color: #000;
+  border: 1px solid #e57373;
+}
+
+/* Páros sorok stílusa */
+mat-row:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Üres állapot */
+.no-data {
+  text-align: center;
+  color: #999;
+  margin-top: 16px;
+  font-style: italic;
+  font-size: 14px;
 }

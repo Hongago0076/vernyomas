@@ -31,15 +31,7 @@ export class AppointmentFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.appointmentForm = this.fb.group({
-      patientId: ['', Validators.required],
-      doctorId: ['', Validators.required],
-      date: ['', Validators.required],
-      place: ['', Validators.required],
-      purpose: ['']
-    });
-  }
+  ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.appointmentForm.valid) {
@@ -50,7 +42,8 @@ export class AppointmentFormComponent implements OnInit {
         this.appointmentForm.value.place,
         this.appointmentForm.value.purpose
       );
-      console.log(newAppointment);
+      this.appointmentCreated.emit(newAppointment); //  elküldi a szülőnek
+      this.appointmentForm.reset();
     }
   }
 }

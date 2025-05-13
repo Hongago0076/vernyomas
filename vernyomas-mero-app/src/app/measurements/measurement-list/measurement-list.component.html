@@ -1,36 +1,52 @@
-<h3>Mérések listája</h3>
+<mat-card class="table-card">
+  <mat-card-title>Mérések listája</mat-card-title>
 
-<mat-table *ngIf="measurements && measurements.length > 0; else noData" [dataSource]="measurements" >
+  <div class="table-container">
+    <table mat-table *ngIf="measurements.length > 0; else noData" [dataSource]="measurements" class="mat-elevation-z4 custom-table">
 
-  <!-- Dátum oszlop -->
-  <ng-container matColumnDef="date">
-    <mat-header-cell *matHeaderCellDef> Dátum </mat-header-cell>
-    <mat-cell *matCellDef="let measurement">{{ measurement.date | date: 'yyyy-MM-dd' }}</mat-cell>
-  </ng-container>
+      <!-- Ikon oszlop -->
+      <ng-container matColumnDef="icon">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let m"><mat-icon color="primary">favorite</mat-icon></td>
+      </ng-container>
 
-  <!-- Szisztolés vérnyomás oszlop -->
-  <ng-container matColumnDef="systolic">
-    <mat-header-cell *matHeaderCellDef> Szisztolés </mat-header-cell>
-    <mat-cell *matCellDef="let measurement" >{{ measurement.systolic }}</mat-cell>
-  </ng-container>
+      <!-- Dátum -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Dátum </th>
+        <td mat-cell *matCellDef="let m">{{ m.date | date: 'yyyy-MM-dd HH:mm' }}</td>
+      </ng-container>
 
-  <!-- Diasztolés vérnyomás oszlop -->
-  <ng-container matColumnDef="diastolic">
-    <mat-header-cell *matHeaderCellDef> Diasztolés </mat-header-cell>
-    <mat-cell *matCellDef="let measurement">{{ measurement.diastolic }}</mat-cell>
-  </ng-container>
+      <!-- Szisztolés -->
+      <ng-container matColumnDef="systolic">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Szisztolés </th>
+        <td mat-cell *matCellDef="let m" [ngClass]="getSystolicClass(m.systolic)">
+          {{ m.systolic }}
+        </td>
+      </ng-container>
 
-  <!-- Pulzus oszlop -->
-  <ng-container matColumnDef="pulse">
-    <mat-header-cell *matHeaderCellDef> Pulzus </mat-header-cell>
-    <mat-cell *matCellDef="let measurement">{{ measurement.pulse }}</mat-cell>
-  </ng-container>
+      <!-- Diasztolés -->
+      <ng-container matColumnDef="diastolic">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Diasztolés </th>
+        <td mat-cell *matCellDef="let m" [ngClass]="getDiastolicClass(m.diastolic)">
+          {{ m.diastolic }}
+        </td>
+      </ng-container>
 
-  <!-- Táblázat sorok -->
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
+      <!-- Pulzus -->
+      <ng-container matColumnDef="pulse">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Pulzus </th>
+        <td mat-cell *matCellDef="let m" [ngClass]="getPulseClass(m.pulse)">
+          {{ m.pulse }}
+        </td>
+      </ng-container>
 
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</mat-card>
 <ng-template #noData>
-  <p>Nincs elérhető mérés.</p>
+  <p class="no-data">Nincs elérhető mérés.</p>
 </ng-template>
