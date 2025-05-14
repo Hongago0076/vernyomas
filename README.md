@@ -1,1 +1,1 @@
-# vernyomas
+# Vérnyomás monitorozó alkalmazás
