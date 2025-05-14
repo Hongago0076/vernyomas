@@ -7,20 +7,26 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatIconModule} from '@angular/material/icon';
+import {RelativeDatePipe} from '../../pipes/relative-date.pipe';
 
 @Component({
   selector: 'app-measurement-list',
-  imports: [CommonModule, MatTableModule, MatHeaderCell, MatCell, MatButtonModule, MatCardModule, MatIconModule, MatPaginatorModule],
+  imports: [CommonModule, MatTableModule, MatHeaderCell, MatCell, MatButtonModule, MatCardModule, MatIconModule, MatPaginatorModule, RelativeDatePipe],
   templateUrl: './measurement-list.component.html',
   styleUrl: './measurement-list.component.css'
 })
 export class MeasurementListComponent {
   @Input() measurements: Measurement[] = [];
 
-  displayedColumns: string[] = ['date', 'systolic', 'diastolic', 'pulse'];
-  dataSource = new MatTableDataSource(this.measurements);
+  displayedColumns: string[] = ['icon', 'date', 'systolic', 'diastolic', 'pulse'];
+  dataSource = new MatTableDataSource<Measurement>();
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
+  ngOnChanges() {
+    this.dataSource.data = this.measurements;
+  }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
