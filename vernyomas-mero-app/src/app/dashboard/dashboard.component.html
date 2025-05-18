@@ -1,1 +1,26 @@
-<mat-toolbar color="primary">Vérnyomás Monitor</mat-toolbar>
+<div class="dashboard-page">
+  <div class="dashboard-grid">
+
+    <mat-card class="dashboard-card">
+      <mat-icon>monitor_heart</mat-icon>
+      <h2>Legutóbbi mérés</h2>
+      <p *ngIf="lastMeasurement">SYS: {{ lastMeasurement.systolic }} - DIA: {{ lastMeasurement.diastolic }} ({{ lastMeasurement.date | date:'mediumDate' }})</p>
+      <p *ngIf="!lastMeasurement">Nincs adat.</p>
+    </mat-card>
+
+    <mat-card class="dashboard-card">
+      <mat-icon>event</mat-icon>
+      <h2>Következő időpont</h2>
+      <p *ngIf="nextAppointment">{{ nextAppointment.date | date:'fullDate' }} - {{ nextAppointment.time }}</p>
+      <p *ngIf="!nextAppointment">Nincs időpont.</p>
+    </mat-card>
+
+    <mat-card class="dashboard-card">
+      <mat-icon>person</mat-icon>
+      <h2>Kezelőorvos</h2>
+      <p *ngIf="doctor">{{ doctor.name }}</p>
+      <p *ngIf="!doctor">Nem elérhető.</p>
+    </mat-card>
+
+  </div>
+</div>

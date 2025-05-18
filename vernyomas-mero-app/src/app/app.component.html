@@ -1,2 +1,5 @@
-<app-menu></app-menu>
+<!-- Ha van user, akkor mutasd a menüt -->
+<app-menu *ngIf="currentUser$ | async as user"></app-menu>
+
+<!-- Ha nincs user, akkor csak a router-outlet -->
 <router-outlet></router-outlet>

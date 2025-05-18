@@ -1,9 +1,18 @@
 <nav class="navbar">
-  <ul>
-    <li><a routerLink="/home">Főoldal</a></li>
-    <li><a routerLink="/measurements">Mérések</a></li>
-    <li><a routerLink="/appointments">Időpontok</a></li>
-    <li><a routerLink="/doctor">Orvosom</a></li>
-    <li><a routerLink="/profile">Profilom</a></li>
+  <div class="navbar-logo">Vérnyomás Monitor</div>
+  <input type="checkbox" id="menu-toggle" />
+  <label for="menu-toggle" class="hamburger">&#9776;</label>
+
+  <ul class="navbar-links">
+    <li><a routerLink="/home" routerLinkActive="active">Főoldal</a></li>
+    <li><a routerLink="/measurements" routerLinkActive="active">Mérések</a></li>
+    <li><a routerLink="/appointments" routerLinkActive="active">Időpontok</a></li>
+    <li><a routerLink="/doctor" routerLinkActive="active">Orvosom</a></li>
+    <li><a routerLink="/profile" routerLinkActive="active">Profilom</a></li>
+    <li>
+      <button mat-stroked-button color="warn" class="logout-btn" (click)="logout()">
+        <mat-icon>logout</mat-icon> Kilépés
+      </button>
+    </li>
   </ul>
 </nav>

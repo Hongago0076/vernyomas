@@ -2,21 +2,9 @@
   <h2>Új Időpont Létrehozása</h2>
 
   <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
-    <!-- Patient ID -->
-    <mat-form-field appearance="fill">
-      <mat-label>Beteg ID</mat-label>
-      <input matInput formControlName="patientId" placeholder="Pl. 12345" />
-    </mat-form-field>
-
-    <!-- Doctor ID -->
-    <mat-form-field appearance="fill">
-      <mat-label>Orvos ID</mat-label>
-      <input matInput formControlName="doctorId" placeholder="Pl. 67890" />
-    </mat-form-field>
-
     <!-- Date Picker -->
     <mat-form-field appearance="fill">
-      <mat-label>Mérés dátuma</mat-label>
+      <mat-label>Időpont dátuma</mat-label>
       <input matInput [matDatepicker]="picker" formControlName="date" placeholder="YYYY-MM-DD" />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>

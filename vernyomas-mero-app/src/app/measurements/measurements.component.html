@@ -1,6 +1,6 @@
-<app-measurement-form (measurementCreated)="addMeasurement($event)"></app-measurement-form>
+<app-measurement-form [patientId]="selectedPatientId"></app-measurement-form>
 <mat-card>
-  <mat-card-title>Legutóbbi mérés</mat-card-title>
-  <mat-card-content>120 / 80 Hgmm</mat-card-content>
+  <mat-card-title></mat-card-title>
+  <mat-card-content></mat-card-content>
 </mat-card>
-<app-measurement-list [measurements]="measurements"></app-measurement-list>
+<app-measurement-list></app-measurement-list>

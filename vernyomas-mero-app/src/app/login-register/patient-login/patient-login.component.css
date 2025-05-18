@@ -1,0 +1,130 @@
+/* Teljes oldalra */
+.login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f3f4f6;
+  font-family: 'Roboto', sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Beúszó animáció */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Login doboz */
+.login-container {
+  background: #ffffff;
+  padding: 40px 50px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  color: #333;
+  text-align: center;
+  animation: slideIn 0.6s ease-out;
+}
+
+/* Cím stílus */
+.login-container h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  font-size: 24px;
+  color: #d32f2f;
+}
+
+/* Szív ikon rendes mérettel */
+.login-container h1 mat-icon {
+  font-size: 24px;
+  line-height: 1;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  color: #d32f2f;
+}
+
+
+/* Űrlap */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Teljes szélesség */
+.full-width {
+  width: 100%;
+}
+
+/* Bejelentkezés gomb */
+button[mat-raised-button] {
+  margin-top: 10px;
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Gomb animáció hoverre */
+button[mat-raised-button]:hover,
+.register-link button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Tiltott gomb */
+button[mat-raised-button][disabled] {
+  background-color: #ccc !important;
+  cursor: not-allowed;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Hibaüzenet */
+.error {
+  margin-top: 10px;
+  color: #e53935;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* Regisztrációs rész */
+.register-link {
+  margin-top: 25px;
+  color: #555;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Regisztrációs gomb */
+.register-link button {
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Kisebb képernyőre */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 30px 20px;
+  }
+}

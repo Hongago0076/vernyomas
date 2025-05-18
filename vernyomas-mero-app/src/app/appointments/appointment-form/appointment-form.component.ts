@@ -8,6 +8,13 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {Measurement} from '../../models/measurement';
 import {CommonModule} from '@angular/common';
+import {AppointmentService} from '../../services/appointment.service';
+import {PatientService} from '../../services/patient.service';
+import {AuthService} from '../../services/auth.service';
+import {DoctorService} from '../../services/doctor.service';
+import {map, switchMap, take} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {doc, docData, Firestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-appointment-form',
@@ -19,31 +26,66 @@ export class AppointmentFormComponent implements OnInit {
   @Output() appointmentCreated = new EventEmitter<Appointment>();
 
   appointmentForm: FormGroup;
+  userid: any;
+  doctorId: string = '';
 
-  constructor(private fb: FormBuilder) {
-    // FormGroup létrehozása és inicializálása a szükséges validátorokkal
+  constructor(
+    private fb: FormBuilder,
+    private appointmentService: AppointmentService,
+    private patientService: PatientService,
+    private authService: AuthService,
+    private doctorService: DoctorService,
+    private firestore: Firestore
+  ) {
     this.appointmentForm = this.fb.group({
-      patientId: ['', Validators.required],         // Beteg ID
-      doctorId: ['', Validators.required],          // Orvos ID
-      date: ['', Validators.required],               // Mérés időpontja (dátum)
-      place: ['', Validators.required],              // Mérés helyszíne
-      purpose: ['']                                 // Cél (nem kötelező)
+      date: ['', Validators.required],
+      place: ['', Validators.required],
+      purpose: ['']
     });
+
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+  }
 
-  onSubmit(): void {
+  async onSubmit() {
     if (this.appointmentForm.valid) {
-      const newAppointment = new Appointment(
-        this.appointmentForm.value.patientId,
-        this.appointmentForm.value.doctorId,
-        this.appointmentForm.value.date,
-        this.appointmentForm.value.place,
-        this.appointmentForm.value.purpose
-      );
-      this.appointmentCreated.emit(newAppointment); //  elküldi a szülőnek
-      this.appointmentForm.reset();
+      try {
+        const patient = await this.patientService.getCurrentPatient().pipe(take(1)).toPromise();
+        const userId = patient?.id;
+        if (!userId) {
+          console.error('Patient ID nem található.');
+          return;
+        }
+
+        const doctorId = await this.patientService.getDoctorIdOfPatient(userId).pipe(take(1)).toPromise();
+        if (!doctorId) {
+          console.error('Orvos azonosító nem megfelelő:', doctorId);
+          return;
+        }
+        console.log('Beteg ID:', userId);
+        console.log('Orvos ID:', doctorId);
+
+        const formValue = this.appointmentForm.value;
+        const dateTime = new Date(`${formValue.date}T${formValue.time}`);
+
+        const newAppointment: Appointment = {
+          id: '',                             // string (vagy optional)
+          patientId: userId,                // string
+          doctorId: doctorId,               // string
+          date: formValue.date,     // string
+          place: formValue.place,           // string
+          purpose: formValue.purpose        // string (vagy optional)
+        };
+
+        await this.appointmentService.addAppointment(newAppointment);
+        console.log('Időpont sikeresen létrehozva');
+        this.appointmentForm.reset();
+
+      } catch (error) {
+        console.error('Hiba történt a foglalás során:', error);
+      }
     }
   }
+
 }

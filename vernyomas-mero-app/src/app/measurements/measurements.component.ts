@@ -3,6 +3,7 @@ import {MeasurementFormComponent} from './measurement-form/measurement-form.comp
 import {Measurement} from '../models/measurement';
 import {MeasurementListComponent} from './measurement-list/measurement-list.component';
 import {MatCard, MatCardContent, MatCardTitle} from '@angular/material/card';
+import {MeasurementService} from '../services/measurement.service';
 
 
 @Component({
@@ -24,9 +25,14 @@ export class MeasurementsComponent implements OnInit {
     }
   }
 
-  addMeasurement(newMeasurement: Measurement) {
-    this.measurements.push(newMeasurement);
-    this.saveMeasurements();  // Adatok mentése
+  selectedPatientId = 'abc123';
+
+  constructor(private measurementService: MeasurementService) {}
+
+  addMeasurement(m: Measurement) {
+    this.measurementService.addMeasurement(m).then(() => {
+      console.log('Mérés hozzáadva');
+    });
   }
 
   saveMeasurements() {

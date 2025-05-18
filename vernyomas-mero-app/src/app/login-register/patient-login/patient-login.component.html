@@ -1,0 +1,30 @@
+<div class="login-page">
+  <div class="login-container">
+    <h1><mat-icon>favorite</mat-icon> Vérnyomás Monitor</h1>
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <mat-icon matPrefix>mail</mat-icon>
+        <input matInput formControlName="email" type="email" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Jelszó</mat-label>
+        <mat-icon matPrefix>lock</mat-icon>
+        <input matInput formControlName="password" type="password" required />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+        Bejelentkezés
+      </button>
+
+      <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+    </form>
+
+    <div class="register-link">
+      <span>Még nem regisztrált?</span>
+      <button mat-stroked-button color="accent" (click)="navigateToRegister()">Regisztráció</button>
+    </div>
+  </div>
+</div>

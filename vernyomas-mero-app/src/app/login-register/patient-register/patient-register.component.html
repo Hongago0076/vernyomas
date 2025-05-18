@@ -1,0 +1,57 @@
+<div class="register-page">
+  <div class="register-container">
+    <h1><mat-icon>favorite</mat-icon> Vérnyomás Monitor</h1>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Név</mat-label>
+        <mat-icon matPrefix>badge</mat-icon>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Születési dátum</mat-label>
+        <mat-icon matPrefix>calendar_month</mat-icon>
+        <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>TAJ szám</mat-label>
+        <mat-icon matPrefix>pin</mat-icon>
+        <input matInput formControlName="tajNumber" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <mat-icon matPrefix>mail</mat-icon>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Jelszó</mat-label>
+        <mat-icon matPrefix>lock</mat-icon>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Orvos</mat-label>
+        <mat-icon matPrefix>medical_services</mat-icon>
+        <mat-select formControlName="doctorId">
+          <mat-option *ngFor="let doc of doctors" [value]="doc.id">
+            {{ doc.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">
+        Regisztráció
+      </button>
+    </form>
+    <div class="login-link">
+      <span>Már van fiókja?</span>
+      <button mat-stroked-button color="accent" (click)="navigateToLogin()">Belépés</button>
+    </div>
+  </div>
+</div>
