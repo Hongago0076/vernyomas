@@ -1,3 +1,3 @@
 # Vérnyomás monitorozó alkalmazás
 
-Host:  vernyomas-px1elb.web.app
+Host:  https://vernyomas-px1elb.web.app/login
