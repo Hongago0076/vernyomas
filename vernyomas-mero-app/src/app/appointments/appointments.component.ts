@@ -8,7 +8,7 @@ import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-appointments',
-  imports: [AppointmentFormComponent, AppointmentListComponent, MatCard, MatCardTitle, MatCardContent, CommonModule],
+  imports: [AppointmentFormComponent, AppointmentListComponent, CommonModule],
   templateUrl: './appointments.component.html',
   styleUrl: './appointments.component.css'
 })

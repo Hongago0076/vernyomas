@@ -13,7 +13,7 @@ import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MeasurementsComponent, AppointmentsComponent, DoctorComponent, ProfileComponent, DashboardComponent, MenuComponent, CommonModule],
+  imports: [CommonModule, RouterOutlet, MenuComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
