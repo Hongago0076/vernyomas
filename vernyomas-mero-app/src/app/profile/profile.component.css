@@ -1,8 +1,10 @@
 .profile-title {
   font-size: 1.8rem;
   margin-bottom: 1rem;
-  color: #2c3e50;
+  color: #d32f2f;
   text-align: center;
+  transition: transform 0.2s ease;
+  animation: fadeIn 0.5s ease;
 }
 
 .profile-table {
@@ -15,6 +17,8 @@
   border-radius: 8px;
   overflow: hidden;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: transform 0.2s ease;
+  animation: fadeIn 1s ease;
 }
 
 .profile-table th,
@@ -41,5 +45,20 @@
 @media (max-width: 600px) {
   .profile-table {
     font-size: 14px;
+  }
+}
+.page{
+  padding: 40px;
+  background: #f3f4f6;
+  min-height: 100%;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

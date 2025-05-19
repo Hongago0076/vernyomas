@@ -4,22 +4,42 @@
     <mat-card class="dashboard-card">
       <mat-icon>monitor_heart</mat-icon>
       <h2>Legutóbbi mérés</h2>
-      <p *ngIf="lastMeasurement">SYS: {{ lastMeasurement.systolic }} - DIA: {{ lastMeasurement.diastolic }} ({{ lastMeasurement.date | date:'mediumDate' }})</p>
-      <p *ngIf="!lastMeasurement">Nincs adat.</p>
+      <div *ngIf="lastMeasurement; else noMeasurement">
+        <p><strong>SYS:</strong> {{ lastMeasurement.systolic }} Hgmm</p>
+        <p><strong>DIA:</strong> {{ lastMeasurement.diastolic }} Hgmm</p>
+        <p><strong>Dátum:</strong> {{ lastMeasurement.date | relativeDate }}</p>
+      </div>
+      <ng-template #noMeasurement>
+        <p>Nincs adat.</p>
+      </ng-template>
     </mat-card>
 
     <mat-card class="dashboard-card">
       <mat-icon>event</mat-icon>
       <h2>Következő időpont</h2>
-      <p *ngIf="nextAppointment">{{ nextAppointment.date | date:'fullDate' }} - {{ nextAppointment.time }}</p>
-      <p *ngIf="!nextAppointment">Nincs időpont.</p>
+      <div *ngIf="nextAppointment; else noAppointment">
+        <p><strong>Dátum:</strong> {{ nextAppointment.date | relativeDate }}</p>
+      </div>
+      <ng-template #noAppointment>
+        <p>Nincs időpont.</p>
+      </ng-template>
     </mat-card>
 
     <mat-card class="dashboard-card">
       <mat-icon>person</mat-icon>
       <h2>Kezelőorvos</h2>
-      <p *ngIf="doctor">{{ doctor.name }}</p>
-      <p *ngIf="!doctor">Nem elérhető.</p>
+      <div *ngIf="doctor; else noDoctor">
+        <p><strong>Név:</strong> {{ doctor.name }}</p>
+      </div>
+      <ng-template #noDoctor>
+        <p>Nem elérhető.</p>
+      </ng-template>
+    </mat-card>
+
+    <mat-card class="dashboard-card">
+      <mat-icon>lightbulb</mat-icon>
+      <h2>Napi tipp</h2>
+      <p>{{ dailyTip }}</p>
     </mat-card>
 
   </div>

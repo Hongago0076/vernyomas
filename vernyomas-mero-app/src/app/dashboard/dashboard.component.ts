@@ -16,10 +16,11 @@ import { DoctorService } from '../services/doctor.service';
 import { Patient } from '../models/patient.model';
 import { PatientService } from '../services/patient.service';
 import { Observable, of } from 'rxjs';
+import {RelativeDatePipe} from '../pipes/relative-date.pipe';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MatToolbarModule, MatSidenavModule, MatInputModule, MatCardModule, CommonModule, MatIconModule],
+  imports: [MatToolbarModule, MatSidenavModule, MatInputModule, MatCardModule, CommonModule, MatIconModule, RelativeDatePipe],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -31,10 +32,20 @@ export class DashboardComponent implements OnInit {
   currentPatient: Patient | null = null;
 
   tips: string[] = [
-    'Igyon meg napi legalább 2 liter vizet!',
-    'Kerülje a sóban gazdag ételeket!',
-    'Mozogjon napi 30 percet!',
-    'Aludjon legalább 7-8 órát!',
+    'Igyál meg napi legalább 2 liter vizet!',
+    'Kerüld a sóban gazdag ételeket!',
+    'Mozogj napi 30 percet!',
+    'Aludj legalább 7-8 órát!',
+    'Kevesebb só, több zöldség!',
+    'Mozgás minden nap!',
+    'Pihenj eleget!',
+    'Fokozd a magnéziumbevitelt!',
+    'Stressz kezelése fontos!',
+    'Kerüld a gyorskajákat!',
+    'Fogyassz több rostot!',
+    'Fokozatosan csökkentsd a koffeint!',
+    'Igyál elegendő vizet!',
+    'Aludj 7-8 órát!',
   ];
 
   constructor(
@@ -52,21 +63,39 @@ export class DashboardComponent implements OnInit {
     this.loadPatientData();
   }
 
+  loadPatientData(): void {
+    this.patientService.getCurrentPatient().pipe(
+      switchMap(patient => {
+        this.currentPatient = patient;
+
+        if (!patient?.id) return of({});
+
+        const measurement$ = this.patientService.getLastMeasurementForPatient(patient.id);
+        const appointment$ = this.appointmentService.getNextAppointmentForPatient(patient.id); // ilyen függvényed lehet, vagy írd meg
+        const doctor$ = patient.doctorId
+          ? this.doctorService.getById(patient.doctorId)
+          : of(null);
+
+        return measurement$.pipe(
+          switchMap(measurement => {
+            this.lastMeasurement = measurement;
+            return appointment$.pipe(
+              switchMap(appointment => {
+                this.nextAppointment = appointment;
+                return doctor$;
+              })
+            );
+          })
+        );
+      })
+    ).subscribe(doctor => {
+      this.doctor = doctor;
+    });
+  }
+
   getRandomTip(): void {
     const randomIndex = Math.floor(Math.random() * this.tips.length);
     this.dailyTip = this.tips[randomIndex];
   }
 
-  loadPatientData(): void {
-    this.patientService.getCurrentPatient().pipe(
-      switchMap(patient => {
-        this.currentPatient = patient;
-        if (!patient?.id) return of(null);
-        return this.patientService.getLastMeasurementForPatient(patient.id);
-      })
-    ).subscribe(lastMeasurement => {
-      this.lastMeasurement = lastMeasurement;
-      console.log('Utolsó mérés:', this.lastMeasurement);
-    });
-  }
 }

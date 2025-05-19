@@ -8,7 +8,7 @@ import {MeasurementService} from '../services/measurement.service';
 
 @Component({
   selector: 'app-measurements',
-  imports: [MeasurementFormComponent, MeasurementListComponent, MatCard, MatCardTitle, MatCardContent],
+  imports: [MeasurementFormComponent, MeasurementListComponent],
   templateUrl: './measurements.component.html',
   styleUrl: './measurements.component.css'
 })

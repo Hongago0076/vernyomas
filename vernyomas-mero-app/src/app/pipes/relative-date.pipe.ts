@@ -1,11 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Timestamp } from '@angular/fire/firestore';
+
 
 @Pipe({
   name: 'relativeDate'
 })
 export class RelativeDatePipe implements PipeTransform {
-  transform(value: Date | string): string {
-    const inputDate = new Date(value);
+  transform(value: Date | string | Timestamp): string {
+    if(value instanceof Timestamp) {
+      value = (value as Timestamp).toDate();
+    }
+    const inputDate = value;
     const today = new Date();
 
     // Másolatok, hogy ne módosítsuk az eredeti példányokat
@@ -20,10 +25,14 @@ export class RelativeDatePipe implements PipeTransform {
     const diffInDays = Math.round(diffInMs / (1000 * 60 * 60 * 24));
 
     switch (diffInDays) {
-      case 0: return 'Ma';
-      case -1: return 'Tegnap';
-      case 1: return 'Holnap';
-      default: return inputDate.toLocaleDateString('hu-HU');
+      case 0:
+        return 'Ma';
+      case -1:
+        return 'Tegnap';
+      case 1:
+        return 'Holnap';
+      default:
+        return new Date(inputDate).toLocaleDateString('hu-HU');
     }
   }
 }

@@ -1,28 +1,25 @@
-<h2 class="profile-title">Beteg profil</h2>
-
-<table class="profile-table">
-  <tr>
-    <th>Név</th>
-    <td>{{ patient.name }}</td>
-  </tr>
-  <tr>
-    <th>Születési dátum</th>
-    <td>{{ patient.dateOfBirth }}</td>
-  </tr>
-  <tr>
-    <th>TAJ szám</th>
-    <td>{{ patient.tajNumber }}</td>
-  </tr>
-  <tr *ngIf="patient.email">
-    <th>Email</th>
-    <td>{{ patient.email }}</td>
-  </tr>
-  <tr *ngIf="patient.doctorId">
-    <th>Orvos ID</th>
-    <td>{{ patient.doctorId }}</td>
-  </tr>
-  <tr *ngIf="patient.id">
-    <th>Beteg ID</th>
-    <td>{{ patient.id }}</td>
-  </tr>
-</table>
+<div class="page">
+  <h2 class="profile-title">Profilom</h2>
+  <table class="profile-table">
+    <tr>
+      <th>Név</th>
+      <td>{{ patient?.name }}</td>
+    </tr>
+    <tr>
+      <th>Születési dátum</th>
+      <td>{{ patient?.dateOfBirth! | relativeDate}}</td>
+    </tr>
+    <tr>
+      <th>TAJ szám</th>
+      <td>{{ patient?.tajNumber }}</td>
+    </tr>
+    <tr *ngIf="patient?.email">
+      <th>Email</th>
+      <td>{{ patient?.email }}</td>
+    </tr>
+    <tr *ngIf="doctorName">
+      <th>Kezelőorvos</th>
+      <td>{{ doctorName }}</td>
+    </tr>
+  </table>
+</div>

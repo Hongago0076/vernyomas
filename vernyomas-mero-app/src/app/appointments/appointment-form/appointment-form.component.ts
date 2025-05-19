@@ -63,21 +63,17 @@ export class AppointmentFormComponent implements OnInit {
           console.error('Orvos azonosító nem megfelelő:', doctorId);
           return;
         }
-        console.log('Beteg ID:', userId);
-        console.log('Orvos ID:', doctorId);
-
         const formValue = this.appointmentForm.value;
-        const dateTime = new Date(`${formValue.date}T${formValue.time}`);
 
         const newAppointment: Appointment = {
           id: '',                             // string (vagy optional)
           patientId: userId,                // string
           doctorId: doctorId,               // string
-          date: formValue.date,     // string
+          date: formValue.date,
           place: formValue.place,           // string
           purpose: formValue.purpose        // string (vagy optional)
         };
-
+        console.log('Új időpont:', formValue.date);
         await this.appointmentService.addAppointment(newAppointment);
         console.log('Időpont sikeresen létrehozva');
         this.appointmentForm.reset();

@@ -1,30 +1,34 @@
-/* Alap */
+/* === NAVBAR === */
 .navbar {
+  background: #ffffff;
+  color: #333;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(135deg, #2196f3, #21cbf3);
-  padding: 0.75rem 1.5rem;
-  color: white;
-  position: relative;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-  animation: fadeInDown 0.5s ease;
+  padding: 16px 32px;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .navbar-logo {
-  font-size: 1.6rem;
+  font-size: 24px;
   font-weight: bold;
+  color: #d32f2f;
   letter-spacing: 1px;
 }
 
 .navbar-links {
   display: flex;
+  align-items: center;
+  gap: 24px;
   list-style: none;
-  margin: 0;
   padding: 0;
-  gap: 1rem;
+  margin: 0;
 }
 
 .navbar-links li {
@@ -33,18 +37,23 @@
 }
 
 .navbar-links a {
-  color: white;
   text-decoration: none;
+  color: #333;
   font-weight: 500;
   position: relative;
   transition: color 0.3s ease;
+}
+
+.navbar-links a:hover,
+.navbar-links a.active {
+  color: #d32f2f;
 }
 
 .navbar-links a::after {
   content: "";
   display: block;
   height: 2px;
-  background-color: white;
+  background-color: #d32f2f;
   width: 0;
   transition: width 0.3s ease;
   position: absolute;
@@ -59,19 +68,22 @@
 
 .logout-btn {
   font-weight: 600;
+  border-color: #d32f2f;
+  color: #d32f2f;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .logout-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
 }
 
-/* Mobil hamburger menü */
+/* === HAMBURGER MENÜ (mobil) === */
 .hamburger {
   display: none;
-  font-size: 2rem;
+  font-size: 28px;
   cursor: pointer;
+  color: #d32f2f;
   user-select: none;
 }
 
@@ -82,34 +94,50 @@
 @media (max-width: 768px) {
   .hamburger {
     display: block;
-    color: white;
   }
 
   .navbar-links {
     flex-direction: column;
+    align-items: flex-start;
+    background: #fff;
     width: 100%;
-    background-color: rgba(33, 150, 243, 0.95);
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease-in-out;
+    transition: max-height 0.4s ease;
+    border-top: 1px solid #eee;
+    margin-top: 12px;
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 0 0 12px 12px;
   }
 
   #menu-toggle:checked ~ .navbar-links {
     max-height: 500px;
-    padding-top: 1rem;
+    padding: 16px 0;
   }
 
   .navbar-links li {
-    padding: 0.5rem 0;
+    padding: 8px 16px;
+    width: 100%;
+  }
+
+  .navbar-links a {
+    width: 100%;
+  }
+
+  .logout-btn {
+    width: 100%;
+    margin-top: 8px;
   }
 }
-@keyframes fadeInDown {
+
+/* === FADE ANIMÁCIÓ === */
+@keyframes fadeIn {
   from {
-    transform: translateY(-20px);
     opacity: 0;
+    transform: translateY(-20px);
   }
   to {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
   }
 }

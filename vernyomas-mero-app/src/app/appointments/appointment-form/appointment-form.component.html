@@ -1,11 +1,11 @@
 <div class="appointment-form-container">
-  <h2>Új Időpont Létrehozása</h2>
+  <h2>Új időpont létrehozása</h2>
 
   <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
     <!-- Date Picker -->
     <mat-form-field appearance="fill">
       <mat-label>Időpont dátuma</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="date" placeholder="YYYY-MM-DD" />
+      <input matInput [matDatepicker]="picker" formControlName="date" placeholder="DD/MM/YYYY" type="datepicker" />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>

@@ -1,6 +1,10 @@
-<h2 class="profile-title">Doktor Profil</h2>
+<div class="page">
+<h2 class="profile-title">Orvosom</h2>
 
-<table class="profile-table">
+<div *ngIf="loading">Betöltés...</div>
+<div *ngIf="!loading && !doctor">Nincs hozzárendelve orvos.</div>
+
+<table class="profile-table" *ngIf="doctor">
   <tr>
     <th>Név</th>
     <td>{{ doctor.name }}</td>
@@ -13,8 +17,5 @@
     <th>Specializáció</th>
     <td>{{ doctor.specialization }}</td>
   </tr>
-  <tr *ngIf="doctor.id">
-    <th>Orvos ID</th>
-    <td>{{ doctor.id }}</td>
-  </tr>
 </table>
+</div>

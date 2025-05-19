@@ -48,8 +48,23 @@ export class AppointmentService {
     const q = query(
       collection(this.firestore, 'appointments'),
       where('patientId', '==', patientId),
-      orderBy('date', 'asc')
+      orderBy('date', 'desc')
     );
     return collectionData(q, { idField: 'id' }) as Observable<Appointment[]>;
   }
+  getNextAppointmentForPatient(patientId: string): Observable<any | null> {
+    const ref = collection(this.firestore, 'appointments');
+    const now = new Date(); // aktuális idő
+    const q = query(
+      ref,
+      where('patientId', '==', patientId),
+      where('date', '>', now),
+      orderBy('date', 'asc'),
+      limit(1)
+    );
+    return collectionData(q, { idField: 'id' }).pipe(
+      map(appointments => appointments[0] || null)
+    );
+  }
+
 }

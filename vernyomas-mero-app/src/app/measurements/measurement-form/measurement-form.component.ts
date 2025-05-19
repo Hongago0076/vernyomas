@@ -86,6 +86,7 @@ export class MeasurementFormComponent implements OnInit {
           pulse: this.measurementForm.value.pulse,
           date: this.measurementForm.value.date,
         };
+        console.log('Új időpont:', this.measurementForm.value.date);
 
         await this.measurementService.addMeasurement(newMeasurement);
         console.log('Mérés sikeresen mentve:', newMeasurement);

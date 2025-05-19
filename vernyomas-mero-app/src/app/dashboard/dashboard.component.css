@@ -8,7 +8,7 @@
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 24px;
   width: 100%;
   max-width: 1000px;
@@ -36,6 +36,17 @@
   color: #d32f2f;
 }
 
+.dashboard-card p {
+  margin: 4px 0;
+  font-size: 15px;
+  color: #333;
+}
+
+.dashboard-card strong {
+  color: #000;
+}
+
+
 .dashboard-card mat-icon {
   font-size: 36px;
   color: #d32f2f;
@@ -43,6 +54,15 @@
   height: fit-content;
   width: fit-content;
 }
+.dashboard-card:nth-child(4) mat-icon {
+  color: #388e3c;
+}
+
+.dashboard-card:nth-child(4) p {
+  font-style: italic;
+  color: #2e7d32;
+}
+
 
 @keyframes fadeIn {
   0% {

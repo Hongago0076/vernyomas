@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild} from '@angular/core';
+import {Component, inject, Input, ViewChild} from '@angular/core';
 import {Measurement} from '../../models/measurement';
 import {Appointment} from '../../models/appointment';
 import {MatCell, MatHeaderCell, MatHeaderRow, MatRow, MatTableDataSource, MatTableModule} from '@angular/material/table';
@@ -9,6 +9,10 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {RelativeDatePipe} from '../../pipes/relative-date.pipe';
 import {IsPastPipe} from '../../pipes/is-past.pipe';
+import {PatientService} from '../../services/patient.service';
+import {AppointmentService} from '../../services/appointment.service';
+import {switchMap, take} from 'rxjs/operators';
+import {of} from 'rxjs';
 
 @Component({
   selector: 'app-appointment-list',
@@ -17,26 +21,30 @@ import {IsPastPipe} from '../../pipes/is-past.pipe';
   styleUrl: './appointment-list.component.css'
 })
 export class AppointmentListComponent {
-  private _appointments: Appointment[] = [];
-
-  @Input() set appointments(value: Appointment[]) {
-    this._appointments = value;
-    this.dataSource.data = value;
-  }
-
-  get appointments(): Appointment[] {
-    return this._appointments;
-  }
-
-  displayedColumns: string[] = ['date', 'place', 'purpose', 'patientId', 'doctorId'];
   dataSource = new MatTableDataSource<Appointment>();
+  displayedColumns: string[] = ['date', 'place', 'purpose'];
+
+  private appointmentService = inject(AppointmentService);
+  private patientService = inject(PatientService);
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
+  ngOnInit(): void {
+    this.patientService.getCurrentPatient().pipe(
+      take(1),
+      switchMap(patient => {
+        if (!patient?.id) return of([]);
+        return this.appointmentService.getAppointmentsByPatient(patient.id);
+      })
+    ).subscribe(appointments => {
+      this.dataSource.data = appointments;
+      console.log(appointments);
+    });
+  }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
-  // Funkció, amely meghatározza, hogy a dátum a múltban van-e
 }

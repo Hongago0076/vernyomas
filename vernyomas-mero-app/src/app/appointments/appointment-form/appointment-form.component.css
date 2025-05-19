@@ -1,27 +1,42 @@
 .appointment-form-container {
-  width: 100%;
   max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
+  margin: 40px auto;
+  padding: 24px;
   background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+  animation: fadeIn 0.5s ease;
 }
 
 h2 {
   text-align: center;
   font-size: 24px;
-  color: #2c3e50;
-  margin-bottom: 20px;
+  color: #d32f2f;
+  margin-bottom: 24px;
 }
 
 mat-form-field {
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 button {
   display: block;
   width: 100%;
   margin-top: 20px;
+}
+
+button:disabled {
+  background-color: #ccc;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -1,23 +1,48 @@
-.form-group {
-  margin-bottom: 15px;
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+  animation: fadeIn 0.5s ease;
 }
 
-.error {
-  color: red;
-  font-size: 0.875em;
+h2 {
+  text-align: center;
+  font-size: 24px;
+  color: #d32f2f;
+  margin-bottom: 24px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
 }
 
 button:disabled {
   background-color: #ccc;
 }
 
-.container {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 16px;
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.full-width {
-  width: 100%;
-  margin-bottom: 16px;
-}

@@ -48,4 +48,10 @@ export class DoctorService {
     return collectionData(ref, { idField: 'id' }) as Observable<Doctor[]>;
   }
 
+  getById(id: string): Observable<Doctor> {
+    const docRef = doc(this.firestore, 'doctors', id);
+    return docData(docRef, { idField: 'id' }) as Observable<Doctor>;
+  }
+
+
 }
